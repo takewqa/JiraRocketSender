@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2"> 
+  <plugin-info> 
+    <description>${project.description}</description>  
+    <version>${project.version}</version>  
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>  
+    <param name="plugin-icon">images/pluginIcon.png</param>  
+    <param name="plugin-logo">images/pluginLogo.png</param> 
+  </plugin-info>  
+  <!-- add our i18n resource -->  
+  <resource type="i18n" name="i18n" location="JiraRocketSender"/>  
+  <!-- add our web resources -->  
+  <web-resource key="JiraRocketSender-resources" name="JiraRocketSender Web Resources"> 
+    <dependency>com.atlassian.auiplugin:ajs</dependency>  
+    <resource type="download" name="JiraRocketSender.css" location="/css/JiraRocketSender.css"/>  
+    <resource type="download" name="JiraRocketSender.js" location="/js/JiraRocketSender.js"/>  
+    <resource type="download" name="images/" location="/images"/>  
+    <context>JiraRocketSender</context> 
+  </web-resource>  
+
+  <web-section name="MyWebSection" i18n-name-key="my-web-section.name" key="my-web-section" location="admin_plugins_menu" weight="1000">
+    <description key="my-web-section.description">The MyWebSection Plugin</description>  
+    <label key="my-web-section.label"/> 
+  </web-section>
+
+  <web-item name="MyWebItem" i18n-name-key="my-web-item.name" key="my-web-item" section="admin_plugins_menu/my-web-section" weight="1000">
+    <description key="my-web-item.description">The MyWebItem Plugin</description>  
+    <label key="my-web-item.label"></label>  
+    <link linkId="my-web-item-link">/secure/RocketWebAction.jspa</link>
+  </web-item>
+
+  <webwork1 key="my-web-work" name="MyWebWork" i18n-name-key="my-web-work.name" roles-required="sysadmin">
+    <description key="my-web-work.description">The MyWebWork Plugin</description>
+    <actions>
+      <action name="uz.takewqa.rocket.webwork.RocketWebAction" alias="RocketWebAction">
+        <view name="success">/templates/rocketWebWork/success.vm</view>
+        <view name="input">/templates/rocketWebWork/input.vm</view>
+        <view name="error">/templates/rocketWebWork/error.vm</view>
+      </action>
+    </actions>
+  </webwork1>
+</atlassian-plugin>
