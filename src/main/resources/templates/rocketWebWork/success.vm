@@ -8,28 +8,37 @@
 
 <form class="aui" method="POST" action="RocketWebAction!save.jspa">
     <div class="field-group">
-        <label for="rocketLogin">Login</label>
+        <label for="rocketLogin">$i18n.getText("uz.takewqa.rocket.webwork.login.label")</label>
         <input class="text medium-field" type="text" id="rocketLogin" name="rocketLogin" value="$!{rocketLogin}">
-        <div class="description">Enter user login</div>
+        <div class="description">$i18n.getText("uz.takewqa.rocket.webwork.login.description")</div>
     </div>
     <div class="field-group">
-        <label for="rocketPassword">Password</label>
+        <label for="rocketPassword">$i18n.getText("uz.takewqa.rocket.webwork.password.label")</label>
         <input class="text medium-field" type="password" id="rocketPassword" name="rocketPassword"
                value="$!{rocketPassword}">
-        <div class="description">Enter user password</div>
+        <div class="description">$i18n.getText("uz.takewqa.rocket.webwork.password.description")</div>
     </div>
     <div class="field-group">
-        <label for="rocketUrl">Rocket.Chat URL</label>
+        <label for="rocketUrl">$i18n.getText("uz.takewqa.rocket.webwork.url.label")</label>
         <input class="text medium-field" type="text" id="rocketUrl" name="rocketUrl" value="$!{rocketUrl}">
-        <div class="description">Enter rocket url</div>
+        <div class="description">$i18n.getText("uz.takewqa.rocket.webwork.url.description")</div>
     </div>
     <div class="buttons-container">
         <div class="aui-buttons">
-            <input class="aui-button" type="submit" value="Validate and save" id="save-user-data">
+            <input class="aui-button" type="submit"
+                   value=$i18n.getText("uz.takewqa.rocket.webwork.save.label") id="save-user-data">
         </div>
         <p>
             #foreach($entry in $status.entrySet())
-                <span class="aui-lozenge aui-lozenge-$!{entry.getKey()}">$!{entry.getValue()}</span>
+                #set($key = $!{entry.getKey()})
+                #if($key == "error")
+                    <span class="aui-lozenge aui-lozenge-$!{entry.getKey()}">$i18n.getText(
+                        "uz.takewqa.rocket.webwork.validation.error.text")</span>
+                #else
+                    <span class="aui-lozenge aui-lozenge-$!{entry.getKey()}">$i18n.getText(
+                        "uz.takewqa.rocket.webwork.validation.success.text")</span>
+                #end
+
             #end
         </p>
     </div>

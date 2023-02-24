@@ -43,9 +43,9 @@ public class RocketWebAction extends JiraWebActionSupport {
     private void validateData() {
         if (pluginSettingService.hasData()) {
             if (validationService.validate()) {
-                this.status.put("error", "Failed authorise");
+                this.status.put("success", "");
             } else {
-                this.status.put("success", "Authorise successfully");
+                this.status.put("error", "");
             }
         }
     }
