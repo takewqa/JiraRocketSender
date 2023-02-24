@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>$i18n.getText("uz.takewqa.rocket.webwork.title.name")</title>
+    <meta name="decorator" content="atl.admin"/>
+    <meta name="admin.active.section" content="admin_plugins_menu/my-section/my-web-item"/>
+</head>
+<body>
+
+<form class="aui" method="POST" action="RocketWebAction!save.jspa">
+    <div class="field-group">
+        <label for="rocketLogin">Login</label>
+        <input class="text medium-field" type="text" id="rocketLogin" name="rocketLogin" value="$!{rocketLogin}">
+        <div class="description">Enter user login</div>
+    </div>
+    <div class="field-group">
+        <label for="rocketPassword">Password</label>
+        <input class="text medium-field" type="password" id="rocketPassword" name="rocketPassword"
+               value="$!{rocketPassword}">
+        <div class="description">Enter user password</div>
+    </div>
+    <div class="field-group">
+        <label for="rocketUrl">Rocket.Chat URL</label>
+        <input class="text medium-field" type="text" id="rocketUrl" name="rocketUrl" value="$!{rocketUrl}">
+        <div class="description">Enter rocket url</div>
+    </div>
+    <div class="buttons-container">
+        <div class="aui-buttons">
+            <input class="aui-button" type="submit" value="Validate and save" id="save-user-data">
+        </div>
+        <p>
+            #foreach($entry in $status.entrySet())
+                <span class="aui-lozenge aui-lozenge-$!{entry.getKey()}">$!{entry.getValue()}</span>
+            #end
+        </p>
+    </div>
+</form>
+</body>
+</html>
